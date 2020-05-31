@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from "./components/Home";
+import Home from "./components/pages/Home";
+import Settings from "./components/pages/Settings.vue"
 // import Information from "./components/pages/Information.vue"
 // import HowToUse from "./components/pages/HowToUse";
 // import EyesOfTheTigerTeam from "./components/pages/EyesOfTheTigerTeam";
@@ -14,6 +15,11 @@ export default new VueRouter ({
             path: "/",
             component: Home,
             name: "home"
+        },
+        {
+            path:"/Settings",
+            component:Settings,
+            name:"settings"
         }
         // {
         //     path: "/Information",
