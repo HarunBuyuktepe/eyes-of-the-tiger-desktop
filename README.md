@@ -1,24 +1,41 @@
 # eyes-of-the-tiger
 
-## Project setup
+## If you do not have npm 
+First visit this site and install
+https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/
+
+## If you do not have VUE cli 
+```
+npm install -g @vue/cli
+```
+
+## If you do not have ELECTRON cli 
+```
+npm install electron -g
+```
+
+## Project setup 
+In first run, you need to run this
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### To run use this
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### to release product use this
+
 ```
 npm run build
 ```
-
-### Lints and fixes files
+## To release desktop app 
+do not forget use these at the end of development
 ```
-npm run lint
+vue add electron-builder
+npm run electron:serve
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
