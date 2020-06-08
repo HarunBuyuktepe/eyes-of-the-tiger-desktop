@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import Login from "./components/auth/Login.vue"
 import Home from "./components/pages/Home";
 import Settings from "./components/pages/Settings.vue"
 // import Information from "./components/pages/Information.vue"
@@ -12,15 +12,21 @@ Vue.use(VueRouter)
 export default new VueRouter ({
     routes: [
         {
-            path: "/",
+            path:"/",
+            component: Login,
+            name: "Login"
+        },
+        {
+            path: "/Home/:username",
             component: Home,
-            name: "home"
+            name: "Home"
         },
         {
             path:"/Settings",
             component:Settings,
-            name:"settings"
+            name:"Settings"
         }
+        
         // {
         //     path: "/Information",
         //     component: Information,
@@ -36,5 +42,7 @@ export default new VueRouter ({
         //     component: EyesOfTheTigerTeam,
         //     name: "EyesOfTheTigerTeam"
         // }
-    ]
+      
+    ], 
+     mode:"history"
 })

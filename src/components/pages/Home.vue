@@ -6,12 +6,16 @@
                    aspect-ratio="1.7" max-width="500" max-height="300" contain></v-img>
 
         </v-row>
+        <v-row justify="center">{{this.$store.state.user}}</v-row>
         <v-row>
             <v-col></v-col>
         </v-row>
         <v-row align="center" justify="center">
-            <v-btn width="250" height="50" rounded color="primary" dark @click="handleStartStopButton()">
-                {{buttonText}}
+            <v-btn width="250" height="50" rounded color="primary" dark @click="handleStartButton()" v-show="show">
+                Start Button
+            </v-btn>
+            <v-btn width="250" height="50" rounded color="primary" dark @click="handleStopButton()" v-show="!show">
+                Stop Button
             </v-btn>
         </v-row>
         <v-row>
@@ -36,25 +40,29 @@
         },
         data() {
             return {
-                buttonText: "Start Program"
+                show: "true",
+                pid: "",
+                user: this.$store.state.user
             }
         },
         methods: {
-            handleStartStopButton() {
-                if (this.buttonText === "Start Program") {
-                    // eslint-disable-next-line no-undef
-                    this.$http.get('http://localhost:8018/start_program').then((response) => {
-                        console.log(response.data)
-                    })
+            handleStartButton() {
+                    // eslint-disable-next-line no-undefined
 
-                    this.buttonText = "Stop Program"
-                } else if (this.buttonText === "To Stop Press ESC and me") {
-                    this.$http.get('http://localhost:8018/kill_program').then((response) => {
+                    this.$http.get("http://localhost:9099/start_without_calibration/".concat(this.user)).then((response) => {
+                        
                         console.log(response.data)
-
+                        this.pid = response.data.pid
+                        console.log(this.pid)
+                        this.show=false
                     })
-                    this.buttonText = "Start Program"
-                }
+            },
+            handleStopButton() {
+                    this.$http.get("http://localhost:9099/kill_program/".concat(this.pid)).then((response) => {
+                        console.log(response)
+                        this.show= true
+                    })
+                    
             },
             handleSettingButton() {
                 this.$router.push({name: "settings", params: 'Settings'})
