@@ -32,7 +32,7 @@ npm run serve
 npm run build
 ```
 ## To release desktop app 
-do not forget use these at the end of development
+do not forget before using these command at the end of development
 ```
 vue add electron-builder
 npm run electron:serve
