@@ -22,7 +22,7 @@ export default new VueRouter ({
             name: "Home"
         },
         {
-            path:"/Settings",
+            path:"/Settings/:username",
             component:Settings,
             name:"Settings"
         }

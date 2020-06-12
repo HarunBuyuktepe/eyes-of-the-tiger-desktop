@@ -1,194 +1,115 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col></v-col>
-        </v-row>
-        <v-row align="center" justify="center">
-            <v-card
-                    class="mx-auto"
-                    max-width="800"
-            >
-                <div style="width: 800px"></div>
-                <v-col>
-                    <v-menu offset-y>
-                        <template v-slot:activator="{ on }">
-                            <v-btn style="background: darkslateblue"
-                                   v-text="user"
-                                   dark
-                                   v-on="on"
+  <v-container fluid fill-height>
+    <img src="../../assets/White-Tiger-Face-HD-1920x1080.jpg"
+         style="position: fixed; "/>
+    <v-row align="center" justify="center">
+      <v-col>
+        <v-card
+          class="mx-auto"
+          max-width="400"
+          style="opacity: 0.92"
+        >
+          <v-card-title>
+            Settings
+          </v-card-title>
+          <v-row class="ma-2" justify="center">
+            <v-col cols="9" class="pa-2">
+              <v-text-field v-model="size1"
+                            label="Move Per Frame"
+                            append-icon="info"
+                            @click:append="sizeOne()"/>
+            </v-col>
+          </v-row>
+          <v-row class="ma-2" justify="center">
+            <v-col cols="9" class="pa-2">
+              <v-text-field v-model="size2"
+                            label="Frame Number For Train"
+                            append-icon="info"
+                            @click:append="sizeTwo()"/>
+            </v-col>
+          </v-row>
+          <v-row class="ma-2" justify="center">
+            <v-col cols="9" class="pa-2">
+              <v-text-field v-model="size3"
+                            label="Scroll Up/Down Treshould"
+                            append-icon="info"
+                            @click:append="sizeThree()"/>
+            </v-col>
+          </v-row>
+          <v-card-actions>
+            <v-row justify="center">
+              <v-btn text dark color="pink" @click="goHome()">
+                Retun Home Page
+              </v-btn>
+            </v-row>
+            <v-row justify="center">
+              <v-btn text dark color="pink">
+                Save And Calibrate
+              </v-btn>
+            </v-row>
+          </v-card-actions>
 
-                            >
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-dialog v-model="dialog" max-width="360">
+      <v-card>
+        <v-card-title class="headline">{{ currentTitle }}</v-card-title>
 
-                            </v-btn>
-                        </template>
-                        <v-list>
-                            <v-list-tile
-                                    v-for="(item, index) in items"
-                                    :key="index"
-                                    @click="user = item.title"
-                            >
-                                <v-row align="center" justify="center">
-                                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                                </v-row>
+        <v-card-text>{{ content }}</v-card-text>
 
-                            </v-list-tile>
-                        </v-list>
-                    </v-menu>
-
-                </v-col>
-                <v-card-title>
-                    A ayarı
-                </v-card-title>
-
-                <v-col>
-                    <v-text-field v-model="size1"/>
-                </v-col>
-
-                <v-card-actions>
-
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn
-                            icon
-                            @click="show1 = !show1"
-                    >
-                        <v-icon>{{ show1 ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                </v-card-actions>
-
-                <v-expand-transition>
-                    <div v-show="show1">
-                        <v-divider></v-divider>
-
-                        <v-card-text>
-                            şu ayardır optimali budur
-                        </v-card-text>
-                    </div>
-                </v-expand-transition>
-
-                <div style="width: 800px"></div>
-                <v-card-title>
-                    B ayarı
-                </v-card-title>
-
-                <v-col>
-                    <v-text-field v-model="size2"/>
-                </v-col>
-
-                <v-card-actions>
-
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn
-                            icon
-                            @click="show2 = !show2"
-                    >
-                        <v-icon>{{ show2 ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                </v-card-actions>
-
-                <v-expand-transition>
-                    <div v-show="show2">
-                        <v-divider></v-divider>
-
-                        <v-card-text>
-                            şu ayardır optimali budur
-                        </v-card-text>
-                    </div>
-                </v-expand-transition>
-
-
-                <div style="width: 800px"></div>
-                <v-card-title>
-                    C ayarı
-                </v-card-title>
-
-                <v-col>
-                    <v-text-field v-model="size3"/>
-                </v-col>
-
-                <v-card-actions>
-
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn
-                            icon
-                            @click="show3 = !show3"
-                    >
-                        <v-icon>{{ show3 ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                    </v-btn>
-                </v-card-actions>
-
-                <v-expand-transition>
-                    <div v-show="show3">
-                        <v-divider></v-divider>
-
-                        <v-card-text>
-                            şu ayardır optimali budur
-                        </v-card-text>
-                    </div>
-                </v-expand-transition>
-                <v-btn
-                        color="purple"
-                        text
-                >
-                    Save
-                </v-btn>
-            </v-card>
-        </v-row>
-    </v-container>
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn text @click="dialog = false">Ok</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-container>
 </template>
 
 
 <script>
 
-    export default {
-        name: "Settings",
-        created() {
-            console.log("Setting Page")
-            this.getUser();
-        },
-        data() {
-            return {
-                show1: false,
-                size1: "3",
-                show2: false,
-                size2: "15",
-                show3: false,
-                size3: "2",
-                user: "none",
-                items: ""
-            }
-        },
-        methods: {
-            selectUser(item) {
-                console.log(item)
-                this.getUserProfile()
-            },
-            getUser() {
-                // burada tüm user verilerini at diyecek
-                // sonra tüm user verilerini dödürecek.
-                // en üstte gelen aktif olacak
-                console.log("get user")
-                this.items = [
-                    {title: 'Me'},
-                    {title: 'User2'},
-                    {title: 'User3'},
-                    {title: 'User4'}
-                ]
-                this.selectUser(this.items[0].title)
-            },
-            getUserProfile() {
-                console.log("Get User Profile")
-                this.size1 = 5    ;
-                this.size2 =  6  ;
-                this.size3 =   12 ;
+  export default {
+    name: "Settings",
+    created() {
+      console.log("Setting Page")
+      this.user =this.$store.state.user
+      console.log(this.$store.state.user)
+      console.log(this.$route.params.username)
+    },
+    data() {
+      return {
+        currentTitle: "",
+        user: "",
+        content: "",
+        dialog: false,
+        size1: "",
+        size2: "",
+        size3: ""
+      }
+    },
+    methods: {
+      goHome() {
+this.$router.push({name: "Home", params: {username: this.user}})
+      },
+      sizeOne() {
+        this.dialog = true;
+        this.currentTitle = "Move Per Frame"
+        this.content = ""
+      },
+      sizeTwo() {
+        this.dialog = true;
+        this.currentTitle = "Frame Number For Train"
+        this.content = "denem"
+      },
+      sizeThree() {
+        this.dialog = true;
+        this.currentTitle = "Scroll Up/Down Treshould"
+        this.content = "denem"
+      },
 
-            }
-        }
     }
+  }
 </script>
 

@@ -1,7 +1,9 @@
 <template>
 <v-container fluid fill-height style="background: #F3E7E5">
-    
-        <v-row justify="center" align="center">
+
+  <img src="../../assets/White-Tiger-Face-HD-1920x1080.jpg"
+          style="position: fixed; "/>
+  <v-row justify="center" align="center">
         <v-card style="width:400px" elevation="10"> 
             <v-card-title class="pa-2"> 
                 <v-row justify="center">Select Username </v-row>
