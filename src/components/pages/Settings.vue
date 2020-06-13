@@ -31,7 +31,7 @@
           <v-row class="ma-2" justify="center">
             <v-col cols="9" class="pa-2">
               <v-text-field v-model="size3"
-                            label="Scroll Up/Down Treshould"
+                            label="Scroll Up/Down Threshold"
                             append-icon="info"
                             @click:append="sizeThree()"/>
             </v-col>
@@ -105,7 +105,7 @@ this.$router.push({name: "Home", params: {username: this.user}})
       },
       sizeThree() {
         this.dialog = true;
-        this.currentTitle = "Scroll Up/Down Treshould"
+        this.currentTitle = "Scroll Up/Down Threshold"
         this.content = "denem"
       },
 
